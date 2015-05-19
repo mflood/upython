@@ -15,6 +15,14 @@ class SimpleWriter(object):
     def __repr__(self): 
         return "SimpleWriter %s" % self.output_file
 
+class DummyWriter(object):
+
+    def write(self, data):
+        print data
+
+    def __repr__(self):
+        return "DummyWriter"
+
 def main():
     input_args = sys.argv;
     if len(input_args) != 3:
@@ -28,8 +36,11 @@ def main():
 
     my_writer = SimpleWriter(output_file)
 
+    #my_writer = DummyWriter()
+
     with open(input_file, "r") as in_handle:
         for line in in_handle:
             my_writer.write(line)
+    print my_writer
 
 main()
